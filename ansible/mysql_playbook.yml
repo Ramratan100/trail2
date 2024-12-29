@@ -3,11 +3,19 @@
   hosts: mysql
   become: yes
   tasks:
+    - name: Update apt cache
+      apt:
+        update_cache: yes
+
     - name: Install MySQL
       apt:
         name: mysql-server
         state: present
-        update_cache: yes
+
+    - name: Install Python MySQL dependencies
+      apt:
+        name: python3-pymysql
+        state: present
 
     - name: Create Database and User
       mysql_user:

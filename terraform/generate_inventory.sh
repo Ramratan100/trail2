@@ -1,15 +1,20 @@
 #!/bin/bash
 
+# Define the AWS region
+AWS_REGION="ap-northeast-1"
+
 # Generate dynamic inventory for Ansible
 
 # Fetch the bastion host public IP
 BASTION_IP=$(aws ec2 describe-instances \
+  --region $AWS_REGION \
   --filters "Name=tag:Name,Values=Bastion-Host" \
   --query 'Reservations[].Instances[].PublicIpAddress' \
   --output text)
 
 # Fetch the MySQL instance private IP
 MYSQL_IP=$(aws ec2 describe-instances \
+  --region $AWS_REGION \
   --filters "Name=tag:Name,Values=MySQL-Instance" \
   --query 'Reservations[].Instances[].PrivateIpAddress' \
   --output text)

@@ -9,3 +9,10 @@ output "bastion_subnet"{
 output "vpc_id"{
     value= aws_vpc.database_vpc.id
 }
+
+output "database_vpc_id" {
+  value = aws_vpc.database_vpc.id
+}
+output "vpc_peering_id" {
+  value = aws_vpc_peering_connection.vpc_peering.id
+}

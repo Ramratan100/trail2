@@ -12,11 +12,3 @@
           - php-mysql
         state: present
         update_cache: yes
-
-    - name: Deploy PHP test scripts
-      copy:
-        dest: /var/www/html/
-        content: |
-          <?php
-          phpinfo();
-          ?>

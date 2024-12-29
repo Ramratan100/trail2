@@ -1,4 +1,3 @@
----
 - name: Configure MySQL Server
   hosts: mysql
   become: yes
@@ -21,10 +20,10 @@
       mysql_user:
         name: root
         host: localhost
-        password: your_root_password  # Replace with your desired root password
+        password: your_root_password  # Set root password
         priv: "*.*:ALL,GRANT"
         state: present
-        login_unix_socket: /var/run/mysqld/mysqld.sock
+        login_unix_socket: /var/run/mysqld/mysqld.sock  # Needed for MySQL 5.7+
 
     - name: Create Database and User
       mysql_user:
@@ -34,17 +33,17 @@
         host: "%"
         state: present
         login_user: root
-        login_password: your_root_password  # Replace with the root password set above
+        login_password: your_root_password  # Use root password for authentication
 
     - name: Create Database
       mysql_db:
         name: testdb
         state: present
         login_user: root
-        login_password: your_root_password  # Replace with the root password set above
+        login_password: your_root_password  # Use root password for authentication
 
     - name: Create Sample Table
       mysql_query:
         login_user: root
-        login_password: your_root_password  # Replace with the root password set above
+        login_password: your_root_password  # Use root password for authentication
         query: "USE testdb; CREATE TABLE IF NOT EXISTS users (id INT AUTO_INCREMENT PRIMARY KEY, name VARCHAR(100)); INSERT INTO users (name) VALUES ('Test User');"

@@ -3,7 +3,7 @@ output "mysql_subnet"{
 }
 
 output "bastion_subnet"{
-    value = aws_subnet.private_subnet_database.id
+    value = aws_subnet.public_subnet_web.id
 }
 
 output "vpc_id"{

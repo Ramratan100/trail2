@@ -24,13 +24,13 @@ variable "key_name" {
 }
 
 variable "public_subnet_web" {
-
-
+  description = "Public subnet ID for Bastion host"
+  type        = string
 }
 
 variable "private_subnet_database" {
-
-
+  description = "Private subnet ID for MySQL server"
+  type        = string
 }
 
 variable "vpc_security_group_mysql" {

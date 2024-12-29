@@ -12,3 +12,11 @@
           - php-mysql
         state: present
         update_cache: yes
+
+    - name: Deploy PHP test script
+      copy:
+        dest: /var/www/html/info.php  # Specify the full file path
+        content: |
+          <?php
+          phpinfo();
+          ?>

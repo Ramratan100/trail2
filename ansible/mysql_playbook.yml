@@ -16,11 +16,3 @@
       apt:
         name: python3-pymysql
         state: present
-
-    - name: Create Database and User
-      mysql_user:
-        name: web_user
-        password: password
-        priv: "*.*:ALL"
-        host: "%"
-        state: present

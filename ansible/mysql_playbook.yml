@@ -24,8 +24,3 @@
         priv: "*.*:ALL"
         host: "%"
         state: present
-
-    - name: Create Database
-      mysql_db:
-        name: testdb
-        state: present

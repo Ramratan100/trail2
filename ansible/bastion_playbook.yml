@@ -13,12 +13,6 @@
         state: present
         update_cache: yes
 
-    - name: Ensure /var/www/html is empty
-      file:
-        path: /var/www/html/*
-        state: absent
-      ignore_errors: yes  # Ignore errors if the directory is empty
-
     - name: Clone my_website repository
       git:
         repo: 'https://github.com/Ramratan100/my_website.git'
@@ -27,3 +21,11 @@
         update: yes
         version: main  # Specify the branch if you want a specific one (optional)
         force: yes  # This ensures that the latest version of the repository is pulled
+
+    - name: Copy tokyojenkins.pem to /home/ubuntu
+      copy:
+        src: /home/ubuntu/tokyojenkins.pem
+        dest: /home/ubuntu/tokyojenkins.pem
+        owner: ubuntu
+        group: ubuntu
+        mode: '0400'

@@ -24,7 +24,7 @@
 
     - name: Copy tokyojenkins.pem to /home/ubuntu
       copy:
-        src: /home/ubuntu/tokyojenkins.pem
+        src: /var/lib/jenkins/tokyojenkins.pem
         dest: /home/ubuntu/tokyojenkins.pem
         owner: ubuntu
         group: ubuntu

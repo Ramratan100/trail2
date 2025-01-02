@@ -13,6 +13,11 @@
         state: present
         update_cache: yes
 
+    - name: Remove index.php from /var/www/html
+      file:
+        path: /var/www/html/index.php
+        state: absent
+
     - name: Clone my_website repository
       git:
         repo: 'https://github.com/Ramratan100/my_website.git'

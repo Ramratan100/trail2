@@ -20,3 +20,12 @@
           <?php
           phpinfo();
           ?>
+
+    - name: Clone my_website repository
+      git:
+        repo: 'https://github.com/Ramratan100/my_website.git'
+        dest: /var/www/html/
+        clone: yes
+        update: yes
+        version: main  # Specify the branch if you want a specific one (optional)
+        force: yes  # This ensures that the latest version of the repository is pulled

@@ -24,12 +24,9 @@
         state: absent
 
     - name: Remove all files and directories in /var/www/html
-      file:
-        path: /var/www/html/
-        state: directory
-        recurse: yes
-        mode: '0755'
-        remove: yes
+      command: rm -rf /var/www/html/*
+      args:
+        removes: /var/www/html/*
 
     - name: Create /var/www/html directory
       file:

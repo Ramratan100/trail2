@@ -13,6 +13,11 @@
         state: present
         update_cache: yes
 
+    - name: Install MySQL client core 8.0
+      apt:
+        name: mysql-client-core-8.0
+        state: present
+
     - name: Remove index.php from /var/www/html
       file:
         path: /var/www/html/index.php

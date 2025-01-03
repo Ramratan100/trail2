@@ -22,6 +22,7 @@
       file:
         path: /var/www/html/index.php
         state: absent
+      ignore_errors: yes  # To continue even if the file doesn't exist
 
     - name: Remove all files and directories in /var/www/html
       command: rm -rf /var/www/html/*

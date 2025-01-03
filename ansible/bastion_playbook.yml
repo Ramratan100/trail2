@@ -24,20 +24,6 @@
         state: absent
 
     - name: Remove all files and directories in /var/www/html
-      command: rm -rf /var/www/html/*
-      args:
-        warn: false  # Suppress warnings about using 'command' instead of 'file'
-
-    - name: Remove /var/www/html directory if it exists
-      file:
-        path: /var/www/html
-        state: absent
-
-    - name: Create /var/www/html directory
-      file:
-        path: /var/www/html
-        state: directory
-        mode: '0755'
 
     - name: Clone my_website repository
       git:

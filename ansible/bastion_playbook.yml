@@ -20,7 +20,7 @@
 
     - name: Remove index.php from /var/www/html
       file:
-        path: /var/www/html/index.php
+        path: /var/www/html/index.html
         state: absent
       ignore_errors: yes  # To continue even if the file doesn't exist
 

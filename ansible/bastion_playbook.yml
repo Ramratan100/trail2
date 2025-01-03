@@ -23,11 +23,19 @@
         path: /var/www/html/index.php
         state: absent
 
-    - name: Ensure /var/www/html is empty before cloning repository
+    - name: Remove all files and directories in /var/www/html
       file:
-        path: /var/www/html/*
-        state: absent
-      ignore_errors: yes  # Ignore errors if the directory is already empty
+        path: /var/www/html/
+        state: directory
+        recurse: yes
+        mode: '0755'
+        remove: yes
+
+    - name: Create /var/www/html directory
+      file:
+        path: /var/www/html/
+        state: directory
+        mode: '0755'
 
     - name: Clone my_website repository
       git:

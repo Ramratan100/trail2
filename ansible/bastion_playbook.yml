@@ -46,6 +46,7 @@
         regexp: '^DirectoryIndex'
         line: 'DirectoryIndex index.php index.html index.pl index.cgi index.xhtml index.htm'
         state: present
+        backrefs: yes  # Ensure the changes are applied directly to the correct line
 
     - name: Restart Apache to apply changes
       systemd:

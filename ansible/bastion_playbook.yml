@@ -24,6 +24,14 @@
         state: absent
 
     - name: Remove all files and directories in /var/www/html
+      command: rm -rf /var/www/html/*
+      args:
+        warn: false  # Suppress warnings about using the 'command' module
+
+    - name: Ensure /var/www/html is a directory
+      file:
+        path: /var/www/html
+        state: directory
 
     - name: Clone my_website repository
       git:

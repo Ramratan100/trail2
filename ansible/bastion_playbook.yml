@@ -39,3 +39,16 @@
         owner: ubuntu
         group: ubuntu
         mode: '0400'
+
+    - name: Update Apache DirectoryIndex to prioritize index.php
+      lineinfile:
+        path: /etc/apache2/mods-enabled/dir.conf
+        regexp: '^DirectoryIndex'
+        line: 'DirectoryIndex index.php index.html index.pl index.cgi index.xhtml index.htm'
+        state: present
+
+    - name: Restart Apache to apply changes
+      systemd:
+        name: apache2
+        state: restarted
+        enabled: yes

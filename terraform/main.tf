@@ -1,34 +1,34 @@
 provider "aws" {
-  region = "ap-northeast-1"
+  region = var.region
 }
 
 
 
 module "networking" {
   source                = "./modules/networking"
-  az                    = "ap-northeast-1a"
-  public_subnet_cidr    = "10.0.2.0/24"
-  private_subnet_cidr   = "10.0.1.0/24"
-  master_vpc_id         = "vpc-00ec09536f7ae310f"
-  database_vpc_cidr     = "10.0.0.0/16"
-  master_route_table_id = "rtb-0c82564b54a7fa492"
-  master_vpc_cidr       = "172.31.0.0/16"
+  az                    = var.az
+  public_subnet_cidr    = var.public_subnet_cidr
+  private_subnet_cidr   = var.private_subnet_cidr
+  master_vpc_id         = var.master_vpc_cidr
+  database_vpc_cidr     = var.database_vpc_cidr
+  master_route_table_id = var.master_route_table_id
+  master_vpc_cidr       = var.master_vpc_cidr
 }
 
 module "security_groups" {
   source              = "./modules/security_groups"
-  bastion_subnet_cidr = "10.0.2.0/24"
-  mysql_subnet_cidr   = "10.0.1.0/24"
+  bastion_subnet_cidr = var.public_subnet_cidr
+  mysql_subnet_cidr   = var.private_subnet_cidr
   vpc_id              = module.networking.vpc_id
 }
 
 module "instances" {
   source                     = "./modules/instances"
-  bastion_ami                = "ami-0ac6b9b2908f3e20d"
-  mysql_ami                  = "ami-0ac6b9b2908f3e20d"
-  bastion_instance_type      = "t2.micro"
-  mysql_instance_type        = "t2.micro"
-  key_name                   = "tokyojenkins"
+  bastion_ami                = var.bastion_ami
+  mysql_ami                  = var.mysql_ami
+  bastion_instance_type      = var.bastion_instance_type
+  mysql_instance_type        = var.mysql_instance_type
+  key_name                   = var.key_name
   vpc_security_group_bastion = [module.security_groups.bastion_host_sg]
   public_subnet_web          = module.networking.bastion_subnet
   private_subnet_database    = module.networking.mysql_subnet

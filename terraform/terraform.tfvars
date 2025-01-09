@@ -1,4 +1,4 @@
-region
+region                = "ap-northeast-1"
 database_vpc_cidr     = "10.0.0.0/16"
 master_vpc_cidr       = "172.31.0.0/16"
 master_route_table_id = "rtb-0c82564b54a7fa492"

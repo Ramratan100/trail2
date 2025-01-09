@@ -9,7 +9,7 @@ module "networking" {
   az                    = var.az
   public_subnet_cidr    = var.public_subnet_cidr
   private_subnet_cidr   = var.private_subnet_cidr
-  master_vpc_id         = var.master_vpc_cidr
+  master_vpc_id         = var.master_vpc_id
   database_vpc_cidr     = var.database_vpc_cidr
   master_route_table_id = var.master_route_table_id
   master_vpc_cidr       = var.master_vpc_cidr

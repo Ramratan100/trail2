@@ -43,10 +43,10 @@ variable "vpc_security_group_bastion" {
 
 variable "Bastion_Host_name" {
   default     = "Bastion-Host"
-  type        = list(string)
+  type        = string
 }
 
 variable "MySQL_Instance_name" {
   default     = "MySQL-Instance"
-  type        = list(string)
+  type        = string
 }

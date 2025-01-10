@@ -1,32 +1,17 @@
+# security_groups.tf
+
 resource "aws_security_group" "bastion_sg" {
-  vpc_id      = var.vpc_id
+  vpc_id = var.vpc_id
 
-  ingress {
-    from_port   = 80
-    to_port     = 80
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-
-  ingress {
-    from_port   = 8080
-    to_port     = 8080
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-
-  ingress {
-    from_port   = 443
-    to_port     = 443
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-
-  ingress {
-    from_port   = 22
-    to_port     = 22
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
+  # Loop through ingress rules defined in variable
+  dynamic "ingress" {
+    for_each = var.ingress_ports
+    content {
+      from_port   = ingress.value.from_port
+      to_port     = ingress.value.to_port
+      protocol    = ingress.value.protocol
+      cidr_blocks = ingress.value.cidr_blocks
+    }
   }
 
   egress {
@@ -37,33 +22,23 @@ resource "aws_security_group" "bastion_sg" {
   }
 
   tags = {
-    Name = "Bastion-Security-Group"
+    Name = var.bastion_security_group_name
   }
 }
 
 resource "aws_security_group" "mysql_sg" {
-   vpc_id      = var.vpc_id
+  vpc_id = var.vpc_id
 
-  ingress {
-    from_port   = 3306
-    to_port     = 3306
-    protocol    = "tcp"
-    cidr_blocks = [var.bastion_subnet_cidr]
+  # Loop through ingress rules defined in variable for MySQL SG
+  dynamic "ingress" {
+    for_each = var.mysql_ingress_ports
+    content {
+      from_port   = ingress.value.from_port
+      to_port     = ingress.value.to_port
+      protocol    = ingress.value.protocol
+      cidr_blocks = ingress.value.cidr_blocks
+    }
   }
-
-  ingress {
-    from_port   = 22
-    to_port     = 22
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-
-ingress {
-  from_port   = -1
-  to_port     = -1
-  protocol    = "icmp"
-  cidr_blocks = ["10.0.2.0/24"]  # Replace with the CIDR block of the Bastion host
-}
 
   egress {
     from_port   = 0
@@ -73,6 +48,6 @@ ingress {
   }
 
   tags = {
-    Name = "MySQL-Security-Group"
+    Name = var.mysql_security_group_name
   }
 }

@@ -45,6 +45,6 @@ variable "Bastion_Host_name" {
   type        = string
 }
 
-variable "MySQL-Instance_name" {
+variable "MySQL_Instance_name" {
   type        = string
 }

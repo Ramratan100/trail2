@@ -73,3 +73,11 @@ variable "key_name" {
   #default = "tokyojenkins"
   type    = string
 }
+
+variable "Bastion_Host_name" {
+  type        = string
+}
+
+variable "MySQL-Instance_name" {
+  type        = string
+}

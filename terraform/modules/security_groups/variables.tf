@@ -16,6 +16,11 @@ variable "bastion_security_group_name" {
   default     = "Bastion-Security-Group"
 }
 
+variable "mysql_subnet_cidr" {
+  description = "CIDR block for the private subnet"
+  type        = string
+}
+
 variable "mysql_security_group_name" {
   description = "The name of the MySQL security group"
   type        = string

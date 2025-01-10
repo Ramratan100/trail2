@@ -75,9 +75,11 @@ variable "key_name" {
 }
 
 variable "Bastion_Host_name" {
+  default = "Bastion-Host"
   type        = string
 }
 
 variable "MySQL_Instance_name" {
+  default = "MySQL-Instance"
   type        = string
 }

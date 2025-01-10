@@ -35,10 +35,16 @@ variable "private_subnet_database" {
 
 variable "vpc_security_group_mysql" {
   type        = list(string)
-
 }
 
 variable "vpc_security_group_bastion" {
   type        = list(string)
-  
+}
+
+variable "Bastion_Host_name" {
+  type        = string
+}
+
+variable "MySQL-Instance_name" {
+  type        = string
 }

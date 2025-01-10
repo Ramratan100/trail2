@@ -15,7 +15,7 @@ resource "aws_instance" "bastion_host" {
   EOF
 
   tags = {
-    Name = "Bastion-Host"
+    Name = var.Bastion_Host_name
   }
 }
 
@@ -35,6 +35,6 @@ resource "aws_instance" "mysql_instance" {
   EOF
 
   tags = {
-    Name = "MySQL-Instance"
+    Name = var.MySQL-Instance_name
   }
 }

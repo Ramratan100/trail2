@@ -35,6 +35,6 @@ resource "aws_instance" "mysql_instance" {
   EOF
 
   tags = {
-    Name = var.MySQL-Instance_name
+    Name = var.MySQL_Instance_name
   }
 }

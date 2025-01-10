@@ -42,9 +42,9 @@ variable "vpc_security_group_bastion" {
 }
 
 variable "Bastion_Host_name" {
-  type        = string
+  type        = list(string)
 }
 
 variable "MySQL_Instance_name" {
-  type        = string
+  type        = list(string)
 }
